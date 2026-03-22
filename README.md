@@ -3,6 +3,7 @@
 Static linter for MCP (Model Context Protocol) tool, resource, and prompt schema definitions.
 
 [![npm version](https://img.shields.io/npm/v/mcp-schema-lint.svg)](https://www.npmjs.com/package/mcp-schema-lint)
+[![npm downloads](https://img.shields.io/npm/dt/mcp-schema-lint.svg)](https://www.npmjs.com/package/mcp-schema-lint)
 [![license](https://img.shields.io/npm/l/mcp-schema-lint.svg)](https://github.com/SiluPanda/mcp-schema-lint/blob/master/LICENSE)
 [![node](https://img.shields.io/node/v/mcp-schema-lint.svg)](https://nodejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue.svg)](https://www.typescriptlang.org/)

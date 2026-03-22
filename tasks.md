@@ -31,25 +31,25 @@ Comprehensive task list derived from SPEC.md. Each task is granular, actionable,
 
 ## Phase 4: Built-in Rules — Tool Rules
 
-- [ ] **Implement rule: tool-description-missing** — In `src/rules/tool-description-missing.ts`. Check if tool has no `description` field or description is empty string. Default severity: `error`. Target format: `tool:<name>`. | Status: not_done
-- [ ] **Implement rule: tool-description-quality** — In `src/rules/tool-description-quality.ts`. Check description quality heuristics: length < 10 chars, matches tool name exactly (case-insensitive), matches vague patterns, lacks a verb. Default severity: `warning`. Use utilities from `src/utils/description.ts`. | Status: not_done
+- [x] **Implement rule: tool-description-missing** — In `src/rules/tool-description-missing.ts`. Check if tool has no `description` field or description is empty string. Default severity: `error`. Target format: `tool:<name>`. | Status: done
+- [x] **Implement rule: tool-description-quality** — In `src/rules/tool-description-quality.ts`. Check description quality heuristics: length < 10 chars, matches tool name exactly (case-insensitive), matches vague patterns, lacks a verb. Default severity: `warning`. Use utilities from `src/utils/description.ts`. | Status: done
 - [ ] **Implement rule: tool-description-length** — In `src/rules/tool-description-length.ts`. Check if tool description exceeds configurable max length (default 500 chars). Default severity: `info`. Support `options.maxLength` configuration. | Status: not_done
-- [ ] **Implement rule: tool-annotations-missing** — In `src/rules/tool-annotations-missing.ts`. Check if tool has no `annotations` field at all. Default severity: `warning`. Suggest adding `readOnlyHint`, `destructiveHint`, `idempotentHint`, and `openWorldHint`. | Status: not_done
+- [x] **Implement rule: tool-annotations-missing** — In `src/rules/tool-annotations-missing.ts`. Check if tool has no `annotations` field at all. Default severity: `warning`. Suggest adding `readOnlyHint`, `destructiveHint`, `idempotentHint`, and `openWorldHint`. | Status: done
 - [ ] **Implement rule: tool-annotations-destructive-hint** — In `src/rules/tool-annotations-destructive-hint.ts`. Check if tool name/description contains destructive keywords (`delete`, `remove`, `drop`, `destroy`, `purge`, `wipe`, `truncate`, `erase`) but has no annotations or `destructiveHint: false`. Default severity: `warning`. | Status: not_done
 - [ ] **Implement rule: tool-annotations-readonly-hint** — In `src/rules/tool-annotations-readonly-hint.ts`. Check if tool name/description contains read-only keywords (`get`, `list`, `search`, `query`, `fetch`, `read`, `describe`, `show`, `view`, `count`) but has `readOnlyHint` unset or `false`. Default severity: `info`. | Status: not_done
-- [ ] **Implement rule: tool-annotations-inconsistent** — In `src/rules/tool-annotations-inconsistent.ts`. Check for logically inconsistent annotation combinations: (1) `readOnlyHint: true` with `destructiveHint: true`, (2) `readOnlyHint: true` with `idempotentHint` explicitly set. Default severity: `error`. | Status: not_done
-- [ ] **Implement rule: tool-output-schema-missing** — In `src/rules/tool-output-schema-missing.ts`. Check if tool has no `outputSchema` field. Default severity: `info`. | Status: not_done
-- [ ] **Implement rule: tool-input-schema-missing** — In `src/rules/tool-input-schema-missing.ts`. Check if tool has no `inputSchema` field at all. Default severity: `error`. | Status: not_done
-- [ ] **Implement rule: tool-input-schema-empty** — In `src/rules/tool-input-schema-empty.ts`. Check if `inputSchema` is `{ type: "object" }` with no `properties` or empty `properties: {}`. Default severity: `warning`. | Status: not_done
-- [ ] **Implement rule: tool-input-schema-no-required** — In `src/rules/tool-input-schema-no-required.ts`. Check if `inputSchema` has `properties` but no `required` array. Default severity: `warning`. | Status: not_done
+- [x] **Implement rule: tool-annotations-inconsistent** — In `src/rules/tool-annotations-inconsistent.ts`. Check for logically inconsistent annotation combinations: (1) `readOnlyHint: true` with `destructiveHint: true`, (2) `readOnlyHint: true` with `idempotentHint` explicitly set. Default severity: `error`. | Status: done
+- [x] **Implement rule: tool-output-schema-missing** — In `src/rules/tool-output-schema-missing.ts`. Check if tool has no `outputSchema` field. Default severity: `info`. | Status: done
+- [x] **Implement rule: tool-input-schema-missing** — In `src/rules/tool-input-schema-missing.ts`. Check if tool has no `inputSchema` field at all. Default severity: `error`. | Status: done
+- [x] **Implement rule: tool-input-schema-empty** — In `src/rules/tool-input-schema-empty.ts`. Check if `inputSchema` is `{ type: "object" }` with no `properties` or empty `properties: {}`. Default severity: `warning`. | Status: done
+- [x] **Implement rule: tool-input-schema-no-required** — In `src/rules/tool-input-schema-no-required.ts`. Check if `inputSchema` has `properties` but no `required` array. Default severity: `warning`. | Status: done
 - [ ] **Implement rule: tool-title-missing** — In `src/rules/tool-title-missing.ts`. Check if tool has no `title` field. Default severity: `info`. | Status: not_done
 
 ---
 
 ## Phase 5: Built-in Rules — Parameter Rules
 
-- [ ] **Implement rule: parameter-description-missing** — In `src/rules/parameter-description-missing.ts`. Check each property in `inputSchema.properties` and `outputSchema.properties` for missing `description` field. Default severity: `warning`. Target format: `tool:<name>.inputSchema.properties.<param>`. | Status: not_done
-- [ ] **Implement rule: parameter-type-missing** — In `src/rules/parameter-type-missing.ts`. Check each property in `inputSchema.properties` for missing `type` field. Skip properties that use `$ref`, `oneOf`, `anyOf`, `allOf`, or `const`. Default severity: `error`. | Status: not_done
+- [x] **Implement rule: parameter-description-missing** — In `src/rules/parameter-description-missing.ts`. Check each property in `inputSchema.properties` and `outputSchema.properties` for missing `description` field. Default severity: `warning`. Target format: `tool:<name>.inputSchema.properties.<param>`. | Status: done
+- [x] **Implement rule: parameter-type-missing** — In `src/rules/parameter-type-missing.ts`. Check each property in `inputSchema.properties` for missing `type` field. Skip properties that use `$ref`, `oneOf`, `anyOf`, `allOf`, or `const`. Default severity: `error`. | Status: done
 - [ ] **Implement rule: parameter-description-quality** — In `src/rules/parameter-description-quality.ts`. Check if parameter description is present but too short (< 5 chars) or matches the parameter name exactly (case-insensitive). Default severity: `info`. | Status: not_done
 - [ ] **Implement rule: parameter-enum-description-missing** — In `src/rules/parameter-enum-description-missing.ts`. Check if a parameter uses `enum` but has no `description` field. Default severity: `info`. | Status: not_done
 
@@ -57,15 +57,15 @@ Comprehensive task list derived from SPEC.md. Each task is granular, actionable,
 
 ## Phase 6: Built-in Rules — Naming Convention Rules
 
-- [ ] **Implement rule: naming-convention** — In `src/rules/naming-convention.ts`. Detect dominant naming convention across all tool/resource/prompt names and flag outliers. Support configurable `options.convention` (`auto`, `camelCase`, `snake_case`, `kebab-case`, `PascalCase`). Default: `auto`. Default severity: `warning`. Use utilities from `src/utils/naming.ts`. This is a `general` category rule that receives the full schemas object. | Status: not_done
+- [x] **Implement rule: naming-convention** — In `src/rules/naming-convention.ts`. Detect dominant naming convention across all tool/resource/prompt names and flag outliers. Support configurable `options.convention` (`auto`, `camelCase`, `snake_case`, `kebab-case`, `PascalCase`). Default: `auto`. Default severity: `warning`. Use utilities from `src/utils/naming.ts`. This is a `general` category rule that receives the full schemas object. | Status: done
 - [ ] **Implement rule: tool-naming-verb-noun** — In `src/rules/tool-naming-verb-noun.ts`. Check that tool names follow a verb-noun pattern by verifying the first segment (split by `_`, `-`, or camelCase boundary) is a recognized verb. Support configurable `options.additionalVerbs` array. Default severity: `info`. Include the full list of recognized verbs from spec section 5.3. | Status: not_done
 
 ---
 
 ## Phase 7: Built-in Rules — Resource Rules
 
-- [ ] **Implement rule: resource-description-missing** — In `src/rules/resource-description-missing.ts`. Check if resource has no `description` or empty description. Default severity: `warning`. Target format: `resource:<name>`. | Status: not_done
-- [ ] **Implement rule: resource-mime-type-missing** — In `src/rules/resource-mime-type-missing.ts`. Check if resource has no `mimeType` field. Default severity: `warning`. | Status: not_done
+- [x] **Implement rule: resource-description-missing** — In `src/rules/resource-description-missing.ts`. Check if resource has no `description` or empty description. Default severity: `warning`. Target format: `resource:<name>`. | Status: done
+- [x] **Implement rule: resource-mime-type-missing** — In `src/rules/resource-mime-type-missing.ts`. Check if resource has no `mimeType` field. Default severity: `warning`. | Status: done
 - [ ] **Implement rule: resource-uri-format** — In `src/rules/resource-uri-format.ts`. Check resource URI validity: (1) syntactically invalid URIs get severity `error`, (2) non-standard schemes (not `https://`, `file://`, `git://`) get severity `warning`. Default severity: `warning`. | Status: not_done
 - [ ] **Implement rule: resource-template-description-missing** — In `src/rules/resource-template-description-missing.ts`. Check if resource template has no `description` field. Default severity: `warning`. Target format: `resourceTemplate:<name>`. | Status: not_done
 
@@ -73,14 +73,14 @@ Comprehensive task list derived from SPEC.md. Each task is granular, actionable,
 
 ## Phase 8: Built-in Rules — Prompt Rules
 
-- [ ] **Implement rule: prompt-description-missing** — In `src/rules/prompt-description-missing.ts`. Check if prompt has no `description` or empty description. Default severity: `warning`. Target format: `prompt:<name>`. | Status: not_done
+- [x] **Implement rule: prompt-description-missing** — In `src/rules/prompt-description-missing.ts`. Check if prompt has no `description` or empty description. Default severity: `warning`. Target format: `prompt:<name>`. | Status: done
 - [ ] **Implement rule: prompt-argument-description-missing** — In `src/rules/prompt-argument-description-missing.ts`. Check each argument in a prompt's `arguments` array for missing `description` field. Default severity: `warning`. Target format: `prompt:<name>.arguments.<argName>`. | Status: not_done
 
 ---
 
 ## Phase 9: Built-in Rules — General Rules
 
-- [ ] **Implement rule: duplicate-names** — In `src/rules/duplicate-names.ts`. Check for duplicate names within tools, resources, and prompts respectively. Default severity: `error`. This is a `general` category rule that receives the full schemas object. | Status: not_done
+- [x] **Implement rule: duplicate-names** — In `src/rules/duplicate-names.ts`. Check for duplicate names within tools, resources, and prompts respectively. Default severity: `error`. This is a `general` category rule that receives the full schemas object. | Status: done
 - [ ] **Implement rule: schema-depth-excessive** — In `src/rules/schema-depth-excessive.ts`. Check if `inputSchema` or `outputSchema` nesting depth exceeds configurable max (default 5). Default severity: `info`. Support `options.maxDepth` configuration. Use utilities from `src/utils/schema-walk.ts`. | Status: not_done
 - [ ] **Implement rule: total-tools-excessive** — In `src/rules/total-tools-excessive.ts`. Check if the server exposes more than configurable max tools (default 50). Default severity: `info`. Support `options.maxTools` configuration. This is a `general` category rule. | Status: not_done
 
@@ -88,7 +88,7 @@ Comprehensive task list derived from SPEC.md. Each task is granular, actionable,
 
 ## Phase 10: Presets
 
-- [ ] **Implement src/presets.ts** — Define all four presets (`recommended`, `strict`, `minimal`, `off`) as maps from rule ID to severity. `recommended`: all rules at their default severities (per spec section 9 table). `strict`: all warnings upgraded to errors, all info upgraded to warnings. `minimal`: only `tool-description-missing`, `tool-annotations-inconsistent`, `tool-input-schema-missing`, `parameter-type-missing`, `duplicate-names`, `resource-uri-format` at error; all others off. `off`: all rules disabled. | Status: not_done
+- [x] **Implement src/presets.ts** — Define all four presets (`recommended`, `strict`, `minimal`, `off`) as maps from rule ID to severity. `recommended`: all rules at their default severities (per spec section 9 table). `strict`: all warnings upgraded to errors, all info upgraded to warnings. `minimal`: only `tool-description-missing`, `tool-annotations-inconsistent`, `tool-input-schema-missing`, `parameter-type-missing`, `duplicate-names`, `resource-uri-format` at error; all others off. `off`: all rules disabled. | Status: done
 
 ---
 
@@ -115,8 +115,8 @@ Comprehensive task list derived from SPEC.md. Each task is granular, actionable,
 
 ## Phase 13: Core Lint Functions
 
-- [ ] **Implement src/lint-schemas.ts** — Synchronous `lintSchemas()` function. Accepts pre-parsed schemas and optional `LintOptions` (without `source`). Resolves configuration (preset + rule overrides), runs rule evaluation via `rule-runner`, builds and returns `LintReport`. Report includes: `passed` (true if zero errors), `timestamp` (ISO 8601), `durationMs`, sorted `diagnostics`, `summary` counts, `preset` name, `ruleStates` map. | Status: not_done
-- [ ] **Implement src/lint.ts** — Async `lint()` function. Accepts full `LintOptions` with source. Dispatches to appropriate source reader, collects schemas and server info, calls `lintSchemas()` internally, augments report with server info. Handle all connection/file errors and return exit code 2 equivalents. | Status: not_done
+- [x] **Implement src/lint-schemas.ts** — Synchronous `lintSchemas()` function. Accepts pre-parsed schemas and optional `LintOptions` (without `source`). Resolves configuration (preset + rule overrides), runs rule evaluation via `rule-runner`, builds and returns `LintReport`. Report includes: `passed` (true if zero errors), `timestamp` (ISO 8601), `durationMs`, sorted `diagnostics`, `summary` counts, `preset` name, `ruleStates` map. | Status: done
+- [x] **Implement src/lint.ts** — Async `lint()` function. Accepts full `LintOptions` with source. Dispatches to appropriate source reader, collects schemas and server info, calls `lintSchemas()` internally, augments report with server info. Handle all connection/file errors and return exit code 2 equivalents. | Status: done
 
 ---
 
@@ -149,17 +149,17 @@ Comprehensive task list derived from SPEC.md. Each task is granular, actionable,
 
 ## Phase 17: Unit Tests — Rule Tests
 
-- [ ] **Test: tool-description-missing** — Test passing case (tool with description), failing case (no description), failing case (empty string description). Verify ruleId, severity, target, and message in diagnostics. | Status: not_done
+- [x] **Test: tool-description-missing** — Test passing case (tool with description), failing case (no description), failing case (empty string description). Verify ruleId, severity, target, and message in diagnostics. | Status: done
 - [ ] **Test: tool-description-quality** — Test passing case (good description), failing cases: description < 10 chars, description matches tool name, description matches vague patterns, description lacks verb. Test edge case: description exactly 10 chars (should pass). | Status: not_done
 - [ ] **Test: tool-description-length** — Test passing case (under 500 chars), failing case (over 500 chars). Test with custom `maxLength` option. | Status: not_done
 - [ ] **Test: tool-annotations-missing** — Test passing case (has annotations), failing case (no annotations field). | Status: not_done
 - [ ] **Test: tool-annotations-destructive-hint** — Test passing case (destructive tool with `destructiveHint: true`), failing case (tool named `delete_file` with `destructiveHint: false`), failing case (destructive tool with no annotations). Test all destructive keywords. | Status: not_done
 - [ ] **Test: tool-annotations-readonly-hint** — Test passing case (read-only tool with `readOnlyHint: true`), failing case (tool named `get_weather` without `readOnlyHint`). Test all read-only keywords. | Status: not_done
-- [ ] **Test: tool-annotations-inconsistent** — Test passing case (consistent annotations), failing case (`readOnlyHint: true` + `destructiveHint: true`), failing case (`readOnlyHint: true` + `idempotentHint` explicitly set). | Status: not_done
+- [x] **Test: tool-annotations-inconsistent** — Test passing case (consistent annotations), failing case (`readOnlyHint: true` + `destructiveHint: true`), failing case (`readOnlyHint: true` + `idempotentHint` explicitly set). | Status: done
 - [ ] **Test: tool-output-schema-missing** — Test passing case (has outputSchema), failing case (no outputSchema). | Status: not_done
-- [ ] **Test: tool-input-schema-missing** — Test passing case (has inputSchema), failing case (no inputSchema). | Status: not_done
-- [ ] **Test: tool-input-schema-empty** — Test passing case (inputSchema with properties), failing case (`{ type: "object" }` with no properties), failing case (empty properties `{}`). | Status: not_done
-- [ ] **Test: tool-input-schema-no-required** — Test passing case (has required array), failing case (has properties but no required). Test edge case: no properties at all (rule should not fire). | Status: not_done
+- [x] **Test: tool-input-schema-missing** — Test passing case (has inputSchema), failing case (no inputSchema). | Status: done
+- [x] **Test: tool-input-schema-empty** — Test passing case (inputSchema with properties), failing case (`{ type: "object" }` with no properties), failing case (empty properties `{}`). | Status: done
+- [x] **Test: tool-input-schema-no-required** — Test passing case (has required array), failing case (has properties but no required). Test edge case: no properties at all (rule should not fire). | Status: done
 - [ ] **Test: tool-title-missing** — Test passing case (has title), failing case (no title). | Status: not_done
 - [ ] **Test: parameter-description-missing** — Test passing case (all params have descriptions), failing case (param without description). Test both inputSchema and outputSchema parameters. | Status: not_done
 - [ ] **Test: parameter-type-missing** — Test passing case (param has type), failing case (param without type). Test that `$ref`, `oneOf`, `anyOf`, `allOf`, `const` schemas are skipped. | Status: not_done
@@ -167,13 +167,13 @@ Comprehensive task list derived from SPEC.md. Each task is granular, actionable,
 - [ ] **Test: parameter-enum-description-missing** — Test passing case (enum param with description), failing case (enum param without description). Test non-enum param (rule should not fire). | Status: not_done
 - [ ] **Test: naming-convention** — Test consistent snake_case (should pass), mixed naming (should flag outliers), single tool (should pass), configurable convention override. Test all convention types. | Status: not_done
 - [ ] **Test: tool-naming-verb-noun** — Test verb-noun name (should pass), noun-only name (should flag), custom additional verbs via options. Test camelCase, snake_case, and kebab-case name splitting. | Status: not_done
-- [ ] **Test: resource-description-missing** — Test passing and failing cases for resources. | Status: not_done
-- [ ] **Test: resource-mime-type-missing** — Test passing and failing cases. | Status: not_done
+- [x] **Test: resource-description-missing** — Test passing and failing cases for resources. | Status: done
+- [x] **Test: resource-mime-type-missing** — Test passing and failing cases. | Status: done
 - [ ] **Test: resource-uri-format** — Test valid URI (pass), invalid URI (error), non-standard scheme (warning). | Status: not_done
 - [ ] **Test: resource-template-description-missing** — Test passing and failing cases for resource templates. | Status: not_done
-- [ ] **Test: prompt-description-missing** — Test passing and failing cases for prompts. | Status: not_done
+- [x] **Test: prompt-description-missing** — Test passing and failing cases for prompts. | Status: done
 - [ ] **Test: prompt-argument-description-missing** — Test passing case (argument with description), failing case (argument without description). | Status: not_done
-- [ ] **Test: duplicate-names** — Test unique names (pass), duplicate tool names (error), duplicate resource names, duplicate prompt names. | Status: not_done
+- [x] **Test: duplicate-names** — Test unique names (pass), duplicate tool names (error), duplicate resource names, duplicate prompt names. | Status: done
 - [ ] **Test: schema-depth-excessive** — Test schema within max depth (pass), schema exceeding max depth (flag). Test custom maxDepth option. | Status: not_done
 - [ ] **Test: total-tools-excessive** — Test under max (pass), over max (flag). Test custom maxTools option. | Status: not_done
 
@@ -181,12 +181,12 @@ Comprehensive task list derived from SPEC.md. Each task is granular, actionable,
 
 ## Phase 18: Unit Tests — Core and Config
 
-- [ ] **Test: presets** — Verify each preset (`recommended`, `strict`, `minimal`, `off`) enables the expected rules at the expected severities. Check every rule ID against the tables in spec section 9. | Status: not_done
+- [x] **Test: presets** — Verify each preset (`recommended`, `strict`, `minimal`, `off`) enables the expected rules at the expected severities. Check every rule ID against the tables in spec section 9. | Status: done
 - [ ] **Test: configuration file parsing** — Test valid JSON config parsing, shorthand severity expansion, full `RuleConfig` object parsing. Test config file discovery (`.mcp-schema-lint.json`, `.mcp-schema-lintrc`, `package.json` key). | Status: not_done
 - [ ] **Test: configuration precedence** — Test that precedence is applied correctly: defaults < preset < config file < CLI `--rule` < programmatic `rules`. Verify each layer can override the previous. | Status: not_done
 - [ ] **Test: configuration validation errors** — Test that unknown rule IDs, invalid severity values, and malformed config files produce clear error messages. | Status: not_done
-- [ ] **Test: lint-schemas** — Test `lintSchemas()` with known schemas and verify: `passed` is true with zero errors, `passed` is false with errors, summary counts are correct, diagnostics are sorted (errors first, then by target), timestamp is ISO 8601, ruleStates map is populated. | Status: not_done
-- [ ] **Test: report builder** — Verify `passed` is `true` when there are warnings but no errors. Verify `passed` is `false` when there is at least one error. Verify summary counts match diagnostic array. | Status: not_done
+- [x] **Test: lint-schemas** — Test `lintSchemas()` with known schemas and verify: `passed` is true with zero errors, `passed` is false with errors, summary counts are correct, diagnostics are sorted (errors first, then by target), timestamp is ISO 8601, ruleStates map is populated. | Status: done
+- [x] **Test: report builder** — Verify `passed` is `true` when there are warnings but no errors. Verify `passed` is `false` when there is at least one error. Verify summary counts match diagnostic array. | Status: done
 
 ---
 

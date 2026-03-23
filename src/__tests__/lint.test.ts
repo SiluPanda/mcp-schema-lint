@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { lintSchemas, lint, createRule } from '../lint.js';
-import type { ToolDefinition, SchemaInput, CustomRuleDefinition } from '../types.js';
+import type { ToolDefinition, SchemaInput, CustomRuleDefinition, RuleContext } from '../types.js';
 
 const validTool: ToolDefinition = {
   name: 'searchFiles',
@@ -237,6 +237,32 @@ describe('createRule / custom rules', () => {
     );
     const d = report.diagnostics.find((x) => x.ruleId === 'custom-no-foo');
     expect(d).toBeUndefined();
+  });
+
+  it('custom rule with category tool does not run on resources', () => {
+    let calledWith: string[] = [];
+    const customRule: CustomRuleDefinition = {
+      id: 'custom-tool-only',
+      category: 'tool',
+      defaultSeverity: 'warning',
+      description: 'Only applies to tools',
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      check(element: unknown, ctx: RuleContext): void {
+        const el = element as { name?: string; uri?: string };
+        calledWith.push(el.name ?? el.uri ?? 'unknown');
+      },
+    };
+
+    lintSchemas(
+      {
+        tools: [{ name: 'myTool', description: 'A valid tool description.' }],
+        resources: [{ uri: 'file:///test', description: 'A resource' }],
+      },
+      { customRules: [customRule] }
+    );
+
+    // Should only be called with the tool, not the resource
+    expect(calledWith).toEqual(['myTool']);
   });
 });
 

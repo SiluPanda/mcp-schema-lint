@@ -7,7 +7,7 @@ export interface LintDiagnostic {
   message: string;
   suggestion?: string;
   elementName: string;
-  elementCategory: 'tool' | 'resource' | 'resourceTemplate' | 'prompt';
+  elementCategory: 'tool' | 'resource' | 'prompt';
 }
 
 export interface LintSummary {

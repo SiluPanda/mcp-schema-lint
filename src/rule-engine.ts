@@ -285,44 +285,29 @@ export function runRules(
     checkDuplicates(prompts.map((p) => p.name), 'prompt', 'prompt');
   }
 
-  // Custom rules — applied to all elements
+  // Custom rules — applied to matching category elements
   if (customRules) {
     for (const cr of customRules) {
       const sev = severities.get(cr.id);
       if (!sev || sev === 'off') continue;
 
-      for (const tool of tools) {
-        const ctx = makeContext(
-          diagnostics,
-          cr.id,
-          sev,
-          tool.name,
-          'tool',
-          `tool:${tool.name}`
-        );
-        cr.check(tool, ctx);
+      if (cr.category === 'tool' || cr.category === 'all' || cr.category === 'cross') {
+        for (const tool of tools) {
+          const ctx = makeContext(diagnostics, cr.id, sev, tool.name, 'tool', `tool:${tool.name}`);
+          cr.check(tool, ctx);
+        }
       }
-      for (const resource of resources) {
-        const ctx = makeContext(
-          diagnostics,
-          cr.id,
-          sev,
-          resource.uri,
-          'resource',
-          `resource:${resource.uri}`
-        );
-        cr.check(resource, ctx);
+      if (cr.category === 'resource' || cr.category === 'all' || cr.category === 'cross') {
+        for (const resource of resources) {
+          const ctx = makeContext(diagnostics, cr.id, sev, resource.uri, 'resource', `resource:${resource.uri}`);
+          cr.check(resource, ctx);
+        }
       }
-      for (const prompt of prompts) {
-        const ctx = makeContext(
-          diagnostics,
-          cr.id,
-          sev,
-          prompt.name,
-          'prompt',
-          `prompt:${prompt.name}`
-        );
-        cr.check(prompt, ctx);
+      if (cr.category === 'prompt' || cr.category === 'all' || cr.category === 'cross') {
+        for (const prompt of prompts) {
+          const ctx = makeContext(diagnostics, cr.id, sev, prompt.name, 'prompt', `prompt:${prompt.name}`);
+          cr.check(prompt, ctx);
+        }
       }
     }
   }
